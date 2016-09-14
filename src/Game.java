@@ -13,15 +13,26 @@ public class Game {
         //intro message
         System.out.println("Welcome, traveller!");
 
-        //creating new player object
-        Player player = new Player();
+        boolean keepRunning = true;
 
-        //player chooses name, weapon and location
-        player.chooseName();
-        player.chooseWeapon();
-        player.chooseLocation();
+        while (keepRunning) {
+            //creating new player object
+            Player player = new Player();
+            //player chooses name, weapon and location
+            player.chooseName();
+            player.chooseWeapon();
+            player.chooseLocation();
 
+            System.out.println("You win!");
+            System.out.println("Would you like to play again? Type y or n");
 
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("n")) {
+                keepRunning = false;
+            }
+        }
+
+        System.out.println("Game over.");
 
     }
 }
