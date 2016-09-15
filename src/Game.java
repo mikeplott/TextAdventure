@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Game {
     static Scanner scanner = new Scanner(System.in);
-
+    static Player player = new Player();
 
     public static void main(String[] args) throws Exception {
         //intro message
@@ -17,9 +17,13 @@ public class Game {
 
         while (keepRunning) {
             //creating new player object
-            Player player = new Player();
+
             //player chooses name, weapon and location
             player.chooseName();
+            if(player.name.equals("")) {
+                System.out.println("Please enter a valid name");
+                player.chooseName();
+            }
             player.chooseWeapon();
             player.chooseLocation();
             player.findItem("shield");
@@ -28,13 +32,39 @@ public class Game {
             System.out.println("You win!");
             System.out.println("Would you like to play again? Type y or n");
 
-            String answer = scanner.nextLine();
+            String answer = customLine();
             if (answer.equalsIgnoreCase("n")) {
                 keepRunning = false;
             }
         }
 
         System.out.println("Game over.");
+
+    }
+
+
+    static String customLine() {
+        String line = scanner.nextLine();
+        while (line.startsWith("/")) {
+            switch (line) {
+                case "/exit":
+                    System.exit(0);
+                    break;
+                case "/inv":
+                    for (String item : player.items) {
+                        System.out.println(item);
+                    }
+                    if (player.items.isEmpty()) {
+                        System.out.println("You have no items.");
+                    }
+                    break;
+                 default:
+                     System.out.println("Invalid command!");
+                     break;
+            }
+            line = scanner.nextLine();
+        }
+        return line;
 
     }
 }
