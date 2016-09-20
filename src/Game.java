@@ -29,6 +29,9 @@ public class Game {
             player.findItem("shield");
             player.findItem("potion");
 
+            Enemy ogre = new Enemy("Ogre", 10 , 10);
+            player.battle(ogre);
+
             System.out.println("You win!");
             System.out.println("Would you like to play again? Type y or n");
 
@@ -37,12 +40,8 @@ public class Game {
                 keepRunning = false;
             }
         }
-
         System.out.println("Game over.");
-
     }
-
-
     static String customLine() {
         String line = scanner.nextLine();
         while (line.startsWith("/")) {

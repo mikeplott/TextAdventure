@@ -3,16 +3,20 @@ import java.util.ArrayList;
 /**
  * Created by michaelplott on 9/14/16.
  */
-public class Player {
-    String name;
+public class Player extends Character {
     String weapon;
     String location;
     ArrayList<String> items = new ArrayList<>();
 
+    Player () {
+        this.health = 20;
+        this.damage = 20;
+    }
+
     void chooseName() {
         System.out.println("What is your name?");
         name = Game.customLine();
-        System.out.printf("Welcome, %s\n" + name);
+        System.out.printf("Welcome, %s\n",  name);
     }
 
     void chooseWeapon() {
@@ -54,7 +58,7 @@ public class Player {
         if(answer.equalsIgnoreCase("y")) {
             items.add(item);
             System.out.println("You picked " + item + " up!");
-            System.out.printf("you picked %s up!\n", item);
+           // System.out.printf("you picked %s up!\n", item);
         }
     }
 }
